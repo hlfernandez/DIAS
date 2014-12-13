@@ -18,9 +18,10 @@ You can also download the DIAS project directly from Github using the following 
 ### 2. Launch the application
 
 Go to the DIASs project base directory, run R and then run the following commands:
-> library("shiny")
-
-> runApp("./")
+```R
+library("shiny")
+runApp("./")
+```
 
 The application is opened in the default web browser.
 
