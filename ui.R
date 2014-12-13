@@ -1,7 +1,7 @@
 library(shiny)
 
 shinyUI(fluidPage(
-  titlePanel("Wellcome to DIAS!"),
+  titlePanel("Welcome to DIAS!"),
 
   # Sidebar with a controls panel and a main panel with output
   sidebarLayout(
