@@ -1,66 +1,37 @@
+# Represents an (start,end) interval
 interval <- setClass("interval", 
-	representation(
-		start="numeric",
-		end="numeric"
+  representation(
+    start="numeric",
+    end="numeric"
 )); 
 
+# Set show method for interval class
 setMethod("show", "interval",
   function(object){
-    cat("(", getStart(object),",",getEnd(object),")","\n");
+    cat("(", object@start,",",object@end,")","\n");
   }
 )
 
-getStart <- function(interval){
-  attributes(interval)$start
-}
-
-getEnd <- function(interval){
-  attributes(interval)$end
-}
-
-
+# Class dataDescription encloses descriptive measures
 dataDescription <- setClass("dataDescription", 
-	representation(
-		n="numeric",
-		mean="numeric",
-		var="numeric",
-		cuasiVar="numeric",
-		stdDev="numeric",
-		cuasiStdDev="numeric"
+  representation(
+    n="numeric",
+    mean="numeric",
+    var="numeric",
+    cuasiVar="numeric",
+    stdDev="numeric",
+    cuasiStdDev="numeric"
 )); 
 
+# Set show method for dataDescription class
 setMethod("show", "dataDescription",
   function(object){
     cat("Data description:\n");
-    cat("n =", getSize(object),"\n");
-    cat("Mean =", getMean(object),"\n");
-    cat("Variance =", getVar(object),"\n");
-    cat("Cuasi-variance =", getCuasiVar(object),"\n");
-    cat("Std. dev. =", getStdDev(object),"\n");
-    cat("Cuasi Std. dev. =", getCuasiStdDev(object),"\n");
+    cat("n =", object@n,"\n");
+    cat("Mean =", object@mean,"\n");
+    cat("Variance =", object@var,"\n");
+    cat("Cuasi-variance =", object@cuasiVar,"\n");
+    cat("Std. dev. =", object@stdDev,"\n");
+    cat("Cuasi Std. dev. =", object@cuasiStdDev,"\n");
   }
 )
-
-getSize <- function(dataDescription){
-  attributes(dataDescription)$n
-}
-
-getMean <- function(dataDescription){
-  attributes(dataDescription)$mean
-}
-
-getVar <- function(dataDescription){
-  attributes(dataDescription)$var
-}
-
-getCuasiVar <- function(dataDescription){
-  attributes(dataDescription)$cuasiVar
-}
-
-getStdDev <- function(dataDescription){
-  attributes(dataDescription)$stdDev
-}
-
-getCuasiStdDev <- function(dataDescription){
-  attributes(dataDescription)$cuasiStdDev
-}

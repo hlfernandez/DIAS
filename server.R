@@ -37,10 +37,10 @@ shinyServer(function(input, output) {
     confLevel = (input$confLevel / 100);       
     meanInterval <- meanInterval2(description,1-confLevel)         
     
-    abline(v=getMean(description),col="red")
-    text(x=getMean(description)+0.3, y=0.5, paste("Mean = ", getMean(description)), col = 'red')
-    abline(v=getStart(meanInterval),col = 'blue')
-    abline(v=getEnd(meanInterval), col = 'blue')
+    abline(v=description@mean,col="red")
+    text(x=description@mean+0.3, y=0.5, paste("Mean = ", description@mean), col = 'red')
+    abline(v=meanInterval@start,col = 'blue')
+    abline(v=meanInterval@end, col = 'blue')
   })
   
   output$analysis <- renderUI({ 
@@ -51,16 +51,16 @@ shinyServer(function(input, output) {
     HTML(
       '<h3>Descriptive analysis:</h3>',
       '<ul>',
-	'<li>Sample size: ',getSize(description),'</li>',
-	'<li>Mean: ',getMean(description),'</li>',
-	'<li>Variance: ',getVar(description),'</li>',
-	'<li>Standard deviation: ',getStdDev(description),'</li>',
+	'<li>Sample size: ',description@n,'</li>',
+	'<li>Mean: ',description@mean,'</li>',
+	'<li>Variance: ',description@var,'</li>',
+	'<li>Standard deviation: ',description@stdDev,'</li>',
       '</ul>',
       '<h3>Inferential analysis:</h3>',
       '<ul>',
 	'<li>Confidence level: ',confLevel,'</li>',
-	'<li>Mean confidence interval: (',round(getStart(meanInterval),4),',',round(getEnd(meanInterval),4),')</li>',
-	'<li>Variance conficende interval: (',round(getStart(varInterval),4),',',round(getEnd(varInterval),4),')</li>',
+	'<li>Mean confidence interval: (',round(meanInterval@start,4),',',round(meanInterval@end,4),')</li>',
+	'<li>Variance conficende interval: (',round(varInterval@start,4),',',round(varInterval@end,4),')</li>',
       '</ul>'            
    )
   })
